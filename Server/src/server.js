@@ -14,6 +14,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+/* routes  */
+
+app.get("/", (req, res) => {
+  res.status(200).send("API is running...");
+  console.log("Api is Running!");
+});
+
 ConnectionDB()
   .then(() => {
     app.listen(Port, () => {
