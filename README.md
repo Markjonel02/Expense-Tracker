@@ -125,7 +125,6 @@ npm test
 Passionate Web Developer from Pasig, Philippines.  
 Specializing in MERN stack, WordPress, and scalable web systems.  
 
-🔗 [Portfolio](https://the-last-of-us-5n1j.vercel.app/) | [LinkedIn](https://www.linkedin.com/in/markjonel-relles-66aaa6287) | GitHub [(github.com in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fgithub.com%2FMarkjonel02")
 
 ```
 
