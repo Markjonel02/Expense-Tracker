@@ -1,18 +1,18 @@
-import { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { Box, Button } from "@chakra-ui/react";
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
 
-  const fetchData = async () => {
-    const respsonse = axios.get("https://jsonplaceholder.typicode.com/todos/1");
-    if (!respsonse) {
-      console.log("error white Fetching the Data");
-    }
-    return await setData(data.json());
+  const handleClick = () => {
+    setCount((prevCount) => prevCount + 1);
   };
 
-  return <Box>App</Box>;
+  return (
+    <Box p={5}>
+      <Button onClick={handleClick}>Count: {count}</Button>
+    </Box>
+  );
 };
 
 export default App;
