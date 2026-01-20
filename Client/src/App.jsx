@@ -1,16 +1,30 @@
 import React, { useState } from "react";
-import { Box, Button } from "@chakra-ui/react";
+import axios from "axios";
+import { Box, Text } from "@chakra-ui/react";
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [data, setData] = useState(null);
 
-  const handleClick = () => {
-    setCount((prevCount) => prevCount + 1);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/todos/1",
+      );
+      setData(response.data);
+    } catch (error) {
+      console.log("Error while fetching the data:", error);
+    }
   };
 
   return (
     <Box p={5}>
-      <Button onClick={handleClick}>Count: {count}</Button>
+      <Text mb={3}>Expense Tracker</Text>
+      <button onClick={fetchData}>Fetch Todo</button>
+      {data && (
+        <Box mt={3}>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </Box>
+      )}
     </Box>
   );
 };
