@@ -1,32 +1,37 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import { Box, Text } from "@chakra-ui/react";
+import axios from "axios";
+function App() {
+  const [data, setData] = useState([]);
 
-const App = () => {
-  const [data, setData] = useState(null);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos/1",
-      );
-      setData(response.data);
-    } catch (error) {
-      console.log("Error while fetching the data:", error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "https://jsonplaceholder.typicode.com/todos?_limit=5",
+        );
+        if (!res) {
+          console.log("no data found");
+        }
+        setData(res.data);
+        console.log("you've fetched data successfully");
+      } catch (error) {
+        console.log("error fetching data", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <Box p={5}>
-      <Text mb={3}>Expense Tracker</Text>
-      <button onClick={fetchData}>Fetch Todo</button>
-      {data && (
-        <Box mt={3}>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </Box>
+    <Box>
+      This is the Fetched Data{" "}
+      {data && data.length ? (
+        <Text as="pre">{JSON.stringify(data, null, 2)}</Text>
+      ) : (
+        <Text>loading...</Text>
       )}
     </Box>
   );
-};
+}
 
 export default App;
